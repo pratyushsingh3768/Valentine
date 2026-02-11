@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Shrijal ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#0d0d0d;   /* PURE DARK */
+font-family:Arial, sans-serif;
+color:#ffffff;
+overflow:hidden;
+}
+
+/* Pages */
+.page{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+transition:0.6s ease;
+}
+
+.hidden{
+transform:translateX(100%);
+}
+
+/* Card */
+.card{
+width:90%;
+max-width:380px;
+background:#1a1a1a;   /* DARK CARD */
+border-radius:20px;
+padding:25px;
+text-align:center;
+box-shadow:0 0 25px rgba(255,0,100,0.6);
+}
+
+/* Headings */
+h2{
+color:#ff2e63;   /* BRIGHT PINK */
+margin-bottom:20px;
+}
+
+/* Buttons */
+button{
+padding:12px 25px;
+border:none;
+border-radius:25px;
+font-size:16px;
+font-weight:bold;
+margin:10px;
+cursor:pointer;
+}
+
+.yesBtn{
+background:#ff2e63;
+color:white;
+}
+
+.noBtn{
+background:white;
+color:#ff2e63;
+position:absolute;
+}
+
+/* Slideshow */
+.slideshow{
+width:100%;
+height:280px;
+border-radius:15px;
+overflow:hidden;
+position:relative;
+}
+
+.slideshow img{
+width:100%;
+height:100%;
+object-fit:cover;
+position:absolute;
+opacity:0;
+transition:1s;
+}
+
+.slideshow img.active{
+opacity:1;
+}
+
+/* Typing */
+#typed{
+white-space:pre-line;
+text-align:left;
+line-height:1.6;
+font-size:15px;
+min-height:220px;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+<div class="card">
+<h2>Shrijal, Will You Be Mine? ❤️</h2>
+<button class="yesBtn" onclick="goToPage2()">YES 💖</button>
+<button class="noBtn" id="noBtn">NO 😏</button>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page hidden" id="page2">
+<div class="card">
+<h2>I Knew You'd Say Yes ❤️</h2>
+<div class="slideshow">
+<img src="IMG_1.jpg" class="active">
+<img src="IMG_2.jpg">
+<img src="IMG_3.jpg">
+<img src="IMG_4.jpg">
+<img src="IMG_5.jpg">
+<img src="IMG_6.jpg">
+</div>
+<button class="yesBtn" onclick="goToPage3()">Read My Message 💌</button>
+</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page hidden" id="page3">
+<div class="card">
+<h2>My Heart ❤️</h2>
+<div id="typed"></div>
+</div>
+</div>
+
+<script>
+/* NO button run */
+let no=document.getElementById("noBtn");
+function moveNo(){
+let x=Math.random()*(window.innerWidth-100);
+let y=Math.random()*(window.innerHeight-50);
+no.style.left=x+"px";
+no.style.top=y+"px";
+}
+no.addEventListener("mouseenter",moveNo);
+no.addEventListener("touchstart",moveNo);
+
+/* Navigation */
+function goToPage2(){
+document.getElementById("page1").classList.add("hidden");
+document.getElementById("page2").classList.remove("hidden");
+}
+
+function goToPage3(){
+document.getElementById("page2").classList.add("hidden");
+document.getElementById("page3").classList.remove("hidden");
+startTyping();
+}
+
+/* Slideshow */
+let slides=document.querySelectorAll(".slideshow img");
+let index=0;
+setInterval(()=>{
+slides[index].classList.remove("active");
+index=(index+1)%slides.length;
+slides[index].classList.add("active");
+},3000);
+
+/* Typing */
+let msg=`Shrijal,
+
+I just want you to know how special you are to me.
+You don’t even realize how much peace and happiness you bring into my life.
+Your smile fixes my worst days, and your presence makes everything feel better.
+
+I’m really grateful to have you.
+No matter what happens, I’ll always care for you and stand by you. ❤️
+
+Forever Yours – Pratyush ❤️`;
+
+let i=0;
+function startTyping(){
+let speed=35;
+let text=document.getElementById("typed");
+text.innerHTML="";
+i=0;
+function type(){
+if(i<msg.length){
+text.innerHTML+=msg.charAt(i);
+i++;
+setTimeout(type,speed);
+}
+}
+type();
+}
+</script>
+
+</body>
+</html>
